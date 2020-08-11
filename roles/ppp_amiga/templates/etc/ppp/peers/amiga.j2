@@ -18,8 +18,8 @@ ms-dns {{ ms_dns }}
 {% endfor -%}
 
 # Specify which WINS Servers the incoming connection Win95 or WinNT should use
-{% for ms_wins in ppp_ms_wins %}
-ms-wins {{ ms_wins | default([]) }}
+{% for ms_wins in ppp_ms_wins | default([]) %}
+ms-wins {{ ms_wins }}
 {% endfor -%}
 
 # Require the peer to authenticate itself before allowing network
