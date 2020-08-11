@@ -1,0 +1,60 @@
+# /etc/ppp/peers/amiga
+#
+# Created for the RPi/Amiga by Roger North-Row <amiga-ppp@north-row.com>
+#
+# To quickly see what options are active in this file, use this command:
+#   egrep -v '#|^ *$' /etc/ppp/peers/amiga
+
+# Serial device
+{{ ppp_serial_device }}
+
+# Speed of the serial line, this is probably maximum unless you have a serial
+# board
+{{ ppp_serial_speed }}
+
+# Specify which DNS Servers the incoming Win95 or WinNT Connection should use
+# Two Servers can be remotely configured
+{% for ms_dns in ppp_ms_dns %}
+ms-dns {{ ms_dns }}
+{% endfor -%}
+
+# Specify which WINS Servers the incoming connection Win95 or WinNT should use
+{% for ms_wins in ppp_ms_wins %}
+ms-wins {{ ms_wins }}
+{% endfor -%}
+
+# Require the peer to authenticate itself before allowing network
+# packets to be sent or received.
+noauth
+
+# Don't use the modem control lines.
+local
+
+# Local and remote IP addresses
+{{ ppp_pi_ip }}:{{ ppp_amiga_ip }}
+
+# Set the interface netmask to <n>, a 32 bit netmask in "decimal dot"
+# notation (e.g. 255.255.255.0).
+netmask {{ lan_netmask }}
+
+# Enables the "passive" option in the LCP.  With this option, pppd will
+# attempt to initiate a connection; if no reply is received from the
+# peer, pppd will then just wait passively for a valid LCP packet from
+# the peer (instead of exiting, as it does without this option).
+passive
+
+# With this option, pppd will not transmit LCP packets to initiate a
+# connection until a valid LCP packet is received from the peer (as for
+# the "passive" option with old versions of pppd).
+silent
+
+# Add an entry to this system's ARP [Address Resolution Protocol]
+# table with the IP address of the peer and the Ethernet address of this
+# system.
+proxyarp
+
+# Do not exit after a connection is terminated; instead try to reopen
+# the connection.
+persist
+
+# ---<End of File>---

@@ -1,0 +1,38 @@
+---
+# tasks file for ppp_amiga
+
+- name: start ppp_amiga
+  debug:
+    msg: Start ppp_amiga
+
+- name: install the required software
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - netfilter-persistent
+    - ppp
+
+- name: copy the firewall
+  template:
+    src: etc/rules.v4.j2
+    dest: /etc/rules.v4
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+  notify:
+    - restore firewall
+
+- name: enable the firewall
+  service:
+    name: netfilter-persistent
+    enabled: yes
+    state: started
+
+- name: copy the PPP peer file
+  template:
+    src: "{{ ppp_peers_dir }}/amiga.j2"
+    dest: /{{ ppp_peers_dir }}/amiga"
+    owner: root
+    group: root
+    mode: u+rw,g-,o-

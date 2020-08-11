@@ -1,0 +1,29 @@
+*nat
+:PREROUTING {{ iptables_nat_prerouting_policy | default ('ACCEPT') }} [0:0]
+:INPUT {{ iptables_nat_input_policy | default ('ACCEPT') }} [0:0]
+:OUTPUT {{ iptables_nat_output_policy | default ('ACCEPT') }} [0:0]
+:POSTROUTING {{ iptables_nat_postrouting_policy | default ('ACCEPT') }} [0:0]
+{% for rule in firewall_rules.nat_rules %}
+{{ rule }}
+{% endfor %}
+COMMIT
+*filter
+:INPUT {{ iptables_filter_input_policy | default ('DROP') }} [0:0]
+:FORWARD {{ iptables_filter_forward_policy | default ('ACCEPT') }} [0:0]
+:OUTPUT {{ iptables_filter_output_policy | default ('ACCEPT') }} [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+{% for rule in firewall_rules.filter_rules %}
+{{ rule }}
+{% endfor %}
+COMMIT
+*mangle
+:PREROUTING {{ iptables_mangle_prerouting_policy | default ('ACCEPT') }} [0:0]
+:INPUT {{ iptables_mangle_input_policy | default ('ACCEPT') }} [0:0]
+:FORWARD {{ iptables_mangle_forward_policy | default ('ACCEPT') }} [0:0]
+:OUTPUT {{ iptables_mangle_output_policy | default ('ACCEPT') }} [0:0]
+:POSTROUTING {{ iptables_mangle_postrouting_policy | default ('ACCEPT') }} [0:0]
+{% for rule in firewall_rules.mangle_rules %}
+{{ rule }}
+{% endfor %}
+COMMIT

@@ -1,0 +1,4 @@
+---
+# defaults file for ppp_amiga
+
+ppp_peers_dir: etc/ppp/peers
