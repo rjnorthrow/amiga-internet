@@ -1,6 +1,5 @@
+# {{ ansible_managed }}
 # /etc/ppp/peers/amiga
-#
-# Created for the RPi/Amiga by Roger North-Row <amiga-ppp@north-row.com>
 #
 # To quickly see what options are active in this file, use this command:
 #   egrep -v '#|^ *$' /etc/ppp/peers/amiga
@@ -14,13 +13,13 @@
 
 # Specify which DNS Servers the incoming Win95 or WinNT Connection should use
 # Two Servers can be remotely configured
-{% for ms_dns in ppp_ms_dns %}
+{% for ms_dns in ppp_ms_dns | default([]) %}
 ms-dns {{ ms_dns }}
 {% endfor -%}
 
 # Specify which WINS Servers the incoming connection Win95 or WinNT should use
 {% for ms_wins in ppp_ms_wins %}
-ms-wins {{ ms_wins }}
+ms-wins {{ ms_wins | default([]) }}
 {% endfor -%}
 
 # Require the peer to authenticate itself before allowing network
