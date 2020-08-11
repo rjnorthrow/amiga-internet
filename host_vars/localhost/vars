@@ -1,24 +1,19 @@
 #
 # Local network
 #
-lan_interface: eth0
-lan_base: 192.168.0
-lan_prefix: 24
-lan_network: "{{ lan_base }}.0"
-lan_network_cidr: "{{ lan_network }}/{{ lan_prefix }}"
-lan_netmask: 255.255.255.0
-lan_broadcast: "{{ lan_base }}.255"
+lan_interface: "{{ interface | default(ansible_default_ipv4.interface) }}"
+lan_ip: "{{ ip | default(ansible_default_ipv4.address) }}"
+lan_network: "{{ network | default(ansible_default_ipv4.network) }}"
+lan_netmask: "{{ netmask | default(ansible_default_ipv4.netmask) }}"
 
 #
 # Options below here probably do not need to be changed
 # -----------------------------------------------------
 #
-# Amiga PPP configuration
+# Amiga to Raspberry Pi IP configuration
 #
-ppp_pi_ip: 10.168.0.1
-ppp_amiga_ip: 10.168.0.2
-ppp_amiga_peers:
-  - { name: amiga }
+ppp_pi_ip: "{{ serial_ip | default('10.168.0.1') }}"
+ppp_amiga_ip: "{{ amiga_ip | default('10.168.0.2') }}"
 
 #
 # Firewall rules
@@ -29,7 +24,7 @@ firewall_rules: {
    '-A POSTROUTING --out-interface {{ lan_interface }} --jump MASQUERADE',
   ],
   filter_rules: [
-    '-A INPUT -i {{ lan_interface }} -s {{ lan_network }}/{{ lan_prefix }} -m state --state NEW -j ACCEPT',
+    '-A INPUT -i {{ lan_interface }} -s {{ lan_network }}/{{ lan_netmask }} -m state --state NEW -j ACCEPT',
   ],
   mangle_rules: [
   ]
