@@ -1,2 +1,5 @@
 ---
 # handlers file for ppp_amiga
+
+- name: restore firewall
+  shell: /sbin/iptables-restore < /etc/rules.ipv4
