@@ -32,7 +32,7 @@
 - name: copy the PPP peer file
   template:
     src: "{{ ppp_peers_dir }}/amiga.j2"
-    dest: /{{ ppp_peers_dir }}/amiga"
+    dest: "/{{ ppp_peers_dir }}/amiga"
     owner: root
     group: root
     mode: u+rw,g-,o-
