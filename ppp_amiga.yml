@@ -8,6 +8,7 @@
 - hosts: localhost
 
   become: yes
+  connection: local
 
   roles:
     - { role: ppp_amiga, tags: ppp_amiga_role }

@@ -21,6 +21,7 @@ Fetch the ansible repo from GitHub:
 `git clone https://github.com/rjnorthrow/amiga-internet.git`
 
 * Modify the Ansible Configuration as Required *
+`cd amiga-internet`
 
 Edit `host_vars/localhost/vars` and change the configuration as required
 
