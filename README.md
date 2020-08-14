@@ -1,8 +1,8 @@
-* Amiga-Internet *
+# Amiga-Internet
 
 With the appropriate USB to serial cable, allow any Amiga with a working serial port and the appropriate TCP/IP software installed to access the internet or your local area network using any Raspberry Pi.
 
-* Getting Started *
+## Getting Started
 
 Install Raspberry Pi OS, you only need the 'lite' version without a GUI
 
@@ -20,8 +20,10 @@ Install ansible and git:
 Fetch the ansible repo from GitHub:
 `git clone https://github.com/rjnorthrow/amiga-internet.git`
 
-* Run the Ansible Script *
+## Run the Ansible Script
 `ansible-playbook amiga_ppp.yml`
+
+### Change the defaults
 
 There are several variables that you can change from the command line, for example if your LAN network clashes with the one set up as the default for the Amiga to Raspberry Pi link (10.168.0.0/24)
 
