@@ -31,7 +31,14 @@
     group: dip
     mode: u=rw,g=r,o=
 
-- name: copy the systemd unit file
+- name: enable forwarding in the kernel
+  sysctl:
+    name: ipv4.forward
+    reload: yes
+    state: present
+    sysctl_set: yes
+    value: 1
+
   template:
     src: etc/systemd/system/pppd@.service.j2
     dest: /etc/systemd/system/pppd@.service
