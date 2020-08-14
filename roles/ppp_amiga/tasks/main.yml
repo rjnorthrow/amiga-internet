@@ -39,6 +39,7 @@
     group: dip
     mode: u=rw,g=r,o=
 
+- name: enable the pppd service
   template:
     src: etc/systemd/system/pppd@.service.j2
     dest: /etc/systemd/system/pppd@.service
