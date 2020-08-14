@@ -1,6 +1,6 @@
 # Amiga-Internet
 
-With the appropriate USB to serial cable, allow any Amiga with a working serial port and the appropriate TCP/IP software installed to access the internet or your local area network using any Raspberry Pi.
+With the appropriate USB to serial cable [like this one](https://plugable.com/products/pl2303-db9/), allow any Amiga with a working serial port and the appropriate TCP/IP software installed to access the internet or your local area network using any Raspberry Pi.
 
 ## Getting Started
 
