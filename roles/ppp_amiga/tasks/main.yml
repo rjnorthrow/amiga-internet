@@ -35,4 +35,6 @@
     dest: "/{{ ppp_peers_dir }}/amiga"
     owner: root
     group: root
-    mode: u+rw,g-,o-
+    mode: u+rw,g-rwx,o-rwx
+  notify:
+    - restart ppp_amiga
