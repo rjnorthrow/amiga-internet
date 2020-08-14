@@ -21,6 +21,7 @@ Fetch the ansible repo from GitHub:
 `git clone https://github.com/rjnorthrow/amiga-internet.git`
 
 Change to the `amiga-internet` directory
+
 `cd amiga-internet`
 
 ## Run the Ansible Script
@@ -33,3 +34,11 @@ There are several variables that you can change from the command line, for examp
 *Change the Amiga<->Raspberry Pi network*
 
 `ansible-playbook --extra-vars='serial_ip=192.168.0.1 amiga_ip=192.168.0.2' ppp_amiga.yml`
+
+*Use a serial cable connected to the GPIO pins rather than USB*
+
+`ansible-playbook --extra-vars='ppp_serial_device=/dev/ttyAMA0' ppp_amiga.yml`
+
+*If you are using the wireless rather than the Ethernet connector*
+
+`ansible-playbook --extra-vars='interface=wlan0' ppp_amiga.yml`
