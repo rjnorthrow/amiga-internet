@@ -20,11 +20,12 @@ ppp_amiga_ip: "{{ amiga_ip | default('10.168.0.2') }}"
 #
 firewall_rules: {
   nat_rules: [
-   '-A PREROUTING --in-interface {{ lan_interface }} --protocol tcp --match tcp --dport 356 --jump DNAT --to-destination {{ ppp_amiga_ip }}:356',
-   '-A POSTROUTING --out-interface {{ lan_interface }} --jump MASQUERADE',
+   '-A PREROUTING --in-interface {{ lan_interface }} --protocol tcp --match tcp --dport 356 --jump DNAT --to-destination {{ ppp_amiga_ip }}:356 -m comment --comment="Port forward TCP/356 for Amiga Explorer from the Raspberry Pi to the Amiga"',
+   '-A POSTROUTING --out-interface {{ lan_interface }} --jump MASQUERADE -m comment --comment="Set up NAT to allow the Amiga to talk through the Raspberry Pi"',
   ],
   filter_rules: [
-    '-A INPUT -i {{ lan_interface }} -s {{ lan_network }}/{{ lan_netmask }} -m state --state NEW -j ACCEPT',
+    '-A INPUT -i {{ lan_interface }} -s {{ lan_network }}/{{ lan_netmask }} -m state --state NEW -j ACCEPT -m comment --comment="Allow all traffic from the LAN"',
+    '-A FORWARD -i ppp0 -o {{ lan_interface }} -j ACCEPT -m comment --comment="Allow traffic from the Amiga to be forwarded through the Raspberry Pi"',
   ],
   mangle_rules: [
   ]
