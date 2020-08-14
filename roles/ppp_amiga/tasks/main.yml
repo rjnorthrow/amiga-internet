@@ -19,22 +19,24 @@
     dest: /etc/rules.v4
     owner: root
     group: root
-    mode: u+rw,g+r,o+r
+    mode: u=rw,g=,o=
   notify:
-    - restore firewall
-
-- name: enable the firewall
-  service:
-    name: netfilter-persistent
-    enabled: yes
-    state: started
+    - restart firewall
 
 - name: copy the PPP peer file
   template:
     src: "{{ ppp_peers_dir }}/amiga.j2"
     dest: "/{{ ppp_peers_dir }}/amiga"
     owner: root
+    group: dip
+    mode: u=rw,g=r,o=
+
+- name: copy the systemd unit file
+  template:
+    src: etc/systemd/system/pppd@.service.j2
+    dest: /etc/systemd/system/pppd@.service
+    owner: root
     group: root
-    mode: u+rw,g-rwx,o-rwx
+    mode: u=rw,g=r,o=r
   notify:
     - restart ppp_amiga

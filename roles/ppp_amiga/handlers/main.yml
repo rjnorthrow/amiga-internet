@@ -1,10 +1,15 @@
 ---
 # handlers file for ppp_amiga
 
-- name: restore firewall
-  shell: /sbin/iptables-restore < /etc/rules.v4
+- name: restart firewall
+  service:
+    name: netfilter-persistent
+    enabled: yes
+    state: restarted
 
 - name: restart ppp_amiga
-  service:
-    name: ppp_amiga
+  systemd:
+    name: pppd@amiga
+    enabled: yes
+    daemon-reload: yes
     state: restarted

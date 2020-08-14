@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+#
+[Unit]
+Description=PPP over Serial link
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/pppd call %i
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
