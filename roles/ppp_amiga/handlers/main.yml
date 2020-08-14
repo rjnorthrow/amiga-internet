@@ -2,7 +2,7 @@
 # handlers file for ppp_amiga
 
 - name: restore firewall
-  shell: /sbin/iptables-restore < /etc/rules.v4
+  shell: /sbin/iptables-restore < /etc/iptables/rules.v4
 
 - name: restart ppp_amiga
   systemd:

@@ -10,13 +10,13 @@
     name: "{{ item }}"
     state: present
   loop:
-    - netfilter-persistent
+    - iptables-persistent
     - ppp
 
 - name: copy the firewall
   template:
-    src: etc/rules.v4.j2
-    dest: /etc/rules.v4
+    src: etc/iptables/rules.v4.j2
+    dest: /etc/iptables/rules.v4
     owner: root
     group: root
     mode: u=rw,g=,o=
@@ -38,6 +38,8 @@
     owner: root
     group: dip
     mode: u=rw,g=r,o=
+  notify:
+    - restart ppp_amiga
 
 - name: enable the pppd service
   template:
