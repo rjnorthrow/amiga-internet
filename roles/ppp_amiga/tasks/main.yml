@@ -21,7 +21,7 @@
     group: root
     mode: u=rw,g=,o=
   notify:
-    - restart firewall
+    - restore firewall
 
 - name: enable forwarding in the kernel
   sysctl:
