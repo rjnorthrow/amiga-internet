@@ -5,7 +5,7 @@ Description=PPP over Serial link
 After=network.target
 
 [Service]
-ExecStart=/usr/sbin/pppd call %i
+ExecStart=/usr/sbin/pppd call %i nodetach
 Restart=on-failure
 
 [Install]
