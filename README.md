@@ -20,10 +20,10 @@ Install ansible and git:
 Fetch the ansible repo from GitHub:
 `git clone https://github.com/rjnorthrow/amiga-internet.git`
 
-* Modify the Ansible Configuration as Required *
-`cd amiga-internet`
-
-Edit `host_vars/localhost/vars` and change the configuration as required
-
 * Run the Ansible Script *
 `ansible-playbook amiga_ppp.yml`
+
+There are several variables that you can change from the command line, for example if your LAN network clashes with the one set up as the default for the Amiga to Raspberry Pi link (10.168.0.0/24)
+
+* Change the Amiga<->Raspberry Pi network *
+`ansible-playbook --extra-vars='serial_ip=192.168.0.1 amiga_ip=192.168.0.2' ppp_amiga.yml`
