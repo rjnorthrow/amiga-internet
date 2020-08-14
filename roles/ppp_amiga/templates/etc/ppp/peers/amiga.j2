@@ -13,7 +13,7 @@
 
 # Specify which DNS Servers the incoming Win95 or WinNT Connection should use
 # Two Servers can be remotely configured
-{% for ms_dns in ppp_ms_dns | default([]) %}
+{% for ms_dns in ppp_ms_dns | default(ansible_dns.nameservers) %}
 ms-dns {{ ms_dns }}
 {% endfor -%}
 
