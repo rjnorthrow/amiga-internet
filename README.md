@@ -20,6 +20,9 @@ Install ansible and git:
 Fetch the ansible repo from GitHub:
 `git clone https://github.com/rjnorthrow/amiga-internet.git`
 
+Change to the `amiga-internet` directory
+`cd amiga-internet`
+
 ## Run the Ansible Script
 `ansible-playbook amiga_ppp.yml`
 
