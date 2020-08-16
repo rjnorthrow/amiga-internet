@@ -25,7 +25,8 @@ firewall_rules: {
   ],
   filter_rules: [
     '-A INPUT -i {{ lan_interface }} -s {{ lan_network }}/{{ lan_netmask }} -m state --state NEW -j ACCEPT -m comment --comment="Allow all traffic from the LAN"',
-    '-A FORWARD -i ppp0 -o {{ lan_interface }} -j ACCEPT -m comment --comment="Allow traffic from the Amiga to be forwarded through the Raspberry Pi"',
+    '-A INPUT -i ppp0 -s {{ ppp_amiga_ip }} -m state --state NEW -j ACCEPT -m comment --comment="Allow traffic to this Raspberry Pi from the Amiga"',
+    '-A FORWARD -i ppp0 -o {{ lan_interface }} -j ACCEPT -m comment --comment="Allow traffic from the Amiga to be forwarded through this Raspberry Pi"',
   ],
   mangle_rules: [
   ]
