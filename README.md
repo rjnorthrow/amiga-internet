@@ -62,7 +62,7 @@ When asked, choose the following options:
 * Enter the domain part of your host name: Put anythig in here, such as `example.com`
 * The host name will be stored to the environment variale HOSTNAME: `Store to ENV(ARC)` or `Use "setenv"`, it doesn't matter
 * Give aliases to your computer: `Proceed`
-* Select a SANA-II device driver: `ppp.device` - not listed? Download and install [this](http://m68k.aminet.net/comm/net/PPP1_45reg.lha)
+* Select a SANA-II device driver: `ppp.device` - not listed? Download and install [this](http://m68k.aminet.net/comm/net/PPP1_45.lha)
 * Select unit number: `0`
 * IP address: `10.168.0.2`
 * Give the destination address: `10.168.0.1`
