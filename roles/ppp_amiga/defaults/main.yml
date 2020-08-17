@@ -1,9 +1,0 @@
----
-# defaults file for ppp_amiga
-
-ppp_config_dir: etc/ppp
-ppp_peers_dir: "{{ ppp_config_dir }}/peers"
-ppp_serial_device: /dev/ttyUSB0
-ppp_serial_speed: 57600
-ppp_net_interface: eth0
-ppp_netmask: "{{ lan_netmask }}"

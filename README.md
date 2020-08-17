@@ -24,6 +24,9 @@ Change to the `amiga-internet` directory
 
 `cd amiga-internet`
 
+## Install the required `rjnorthrow.ppp_amiga` role
+`ansible-galaxy install rjnorthrow.ppp_amiga`
+
 ## Run the Ansible Script
 `ansible-playbook amiga_ppp.yml`
 
