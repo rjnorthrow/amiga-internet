@@ -97,6 +97,8 @@ At this point, the software is installed but not configured properly. Take the f
 * Change `AmiTCP:bin/ifconfig lo/0 localhost` to `ifconfig lo0 localhost`, fixing the device name, and ifconfig is already in our path
 * Change `AmiTCP:bin/ifconfig Devs:Networks/ppp.device/0` to `ifconfig ppp0`, keeping the rest of the line
 
+`ed SYS:Internet/AmiTCP-3.0b2/db/inet.access` if you would like to allow connections for Amiga Explorer on TCP port 356 - Change `deny` to `allow` anywhere
+
 Now ensure that `pppd` is running on your Raspberry Pi and then reboot your Amiga
 
 In order to tidy up the connection after use, type: `offline Devs:Networks/ppp.device 0`. This makes sure that the Raspberry Pi end is informed that the connection has been terminated and it will restart the PPP daemon so that you can connect again
