@@ -62,7 +62,7 @@ When asked, choose the following options:
 * Login incorrect: There is a bug in the installation script, simply close the window
 * Enter the default user name: Put anything in here, such as your first name
 * Enter the host name of your computer: Put anything in here, such as `Amiga`
-* Enter the domain part of your host name: Put anythig in here, such as `example.com`
+* Enter the domain part of your host name: Put anything in here, such as `example.com`
 * The host name will be stored to the environment variale HOSTNAME: `Store to ENV(ARC)` or `Use "setenv"`, it doesn't matter
 * Give aliases to your computer: `Proceed`
 * Select a SANA-II device driver: `ppp.device` - not listed? Download and install [this](http://m68k.aminet.net/comm/net/PPP1_45.lha)
