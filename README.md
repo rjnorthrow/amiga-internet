@@ -1,6 +1,6 @@
 # Amiga-Internet
 
-With the appropriate USB to serial cable [like this one](https://plugable.com/products/pl2303-db9/), allow any Amiga with at least 1MiB RAM, Kickstart version 37 or higher, a working serial port and the [appropriate TCP/IP software](http://aminet.net/comm/net/AmiTCP-bin-30b2.lha) installed to access the internet or your local area network using any Raspberry Pi.
+With the appropriate USB to serial cable [like this one](https://plugable.com/products/pl2303-db9/), allow any Amiga with at least 2MiB RAM but probably more like 4MiB, Kickstart version 37 or higher (Workbench 2+), a working serial port, a null modem cable with a 25-pin to 9-pin connection and the [appropriate TCP/IP software](http://aminet.net/comm/net/AmiTCP-bin-30b2.lha) installed to access the internet or your local area network using any Raspberry Pi.
 
 ## Getting Started (Raspberry Pi)
 
@@ -24,8 +24,8 @@ Change to the `amiga-internet` directory
 
 `cd amiga-internet`
 
-## Install the required `rjnorthrow.ppp_amiga` role
-`ansible-galaxy install rjnorthrow.ppp_amiga`
+## Install the required `rjnorthrow.amiga_ppp` role
+`ansible-galaxy install rjnorthrow.amiga_ppp`
 
 ## Run the Ansible Script
 `ansible-playbook amiga_ppp.yml`
@@ -91,7 +91,7 @@ At this point, the software is installed but not configured properly. Take the f
 
 `ed SYS:Internet/AmiTCP-3.0b2/db/interfaces` - Add the line: `ppp DEV=Devs/Networks/ppp.device` to bind `ppp0` to the `ppp` device
 
-`ed SYS:Internet/bin/startnet`:
+`ed SYS:Internet/AmiTCP-3.0b2/bin/startnet`:
 * Add a new line at the top: `online Devs:Networks/ppp.device 0`, this brings up the `ppp0` interface, configured above
 * Change `run AmiTCP:AmiTCP` to `run >NIL: AmiTCP:AmiTCP` to discard output from the command
 * Change `AmiTCP:bin/ifconfig lo/0 localhost` to `ifconfig lo0 localhost`, fixing the device name, and ifconfig is already in our path
